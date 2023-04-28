@@ -10,7 +10,7 @@ preconfigure_package() {
 make_package() {
 	# openssl disabled temporally
 	LDFLAGS="-L${STAGING_DIR}/usr/lib -Wl,--rpath-link=${STAGING_DIR}/lib -Os" CFLAGS=${BUILD_CFLAGS} \
-					make -j${MAKE_JOBS} CC=${BUILD_CC} CXX=${BUILD_CXX} WITH_DOCS=no WITH_TLS=no
+					make -j${MAKE_JOBS} CC=${BUILD_CC} CXX=${BUILD_CXX} WITH_DOCS=no 
  
 }
 
@@ -18,6 +18,6 @@ install_package() {
 	for d in lib src client; do
 	LDFLAGS="-L${STAGING_DIR}/usr/lib -Wl,--rpath-link=${STAGING_DIR}/lib -Os" CFLAGS=${BUILD_CFLAGS} \
 		make -C ${d} install \
-		DESTDIR=${STAGING_DIR} CC=${BUILD_CC} WITH_DOCS=no WITH_TLS=no
+		DESTDIR=${STAGING_DIR} CC=${BUILD_CC} WITH_DOCS=no 
 	done
 }
